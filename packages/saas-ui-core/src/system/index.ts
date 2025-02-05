@@ -4,5 +4,4 @@ export type Dict = Record<string, any>
 
 export const sui = ark
 
-export type HTMLSystemProps<T extends keyof JSX.IntrinsicElements> =
-  HTMLArkProps<T>
+export type { HTMLArkProps as HTMLSystemProps }

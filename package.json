@@ -28,6 +28,7 @@
   },
   "scripts": {
     "w": "yarn workspace",
+    "dev:panda": "yarn turbo dev",
     "dev:web": "yarn w website dev",
     "dev:palette": "yarn w palette-docs dev",
     "changelog:gen": "tsx scripts/changelog-generate.ts",
@@ -38,6 +39,7 @@
     "publish:next": "yarn workspaces foreach -Wp --from '@saas-ui/*' --exclude '@saas-ui/pro' --exclude '@saas-ui-pro/*' npm publish --access public --tag next",
     "publish": "yarn workspaces foreach -Wp --from '@saas-ui/*' --exclude '@saas-ui/pro' --exclude '@saas-ui-pro/*' npm publish && yarn changeset tag",
     "storybook": "yarn w saas-ui-storybook dev",
+    "storybook:panda": "cd packages/saas-ui-react-panda && yarn storybook",
     "build:storybook": "yarn w saas-ui-storybook build",
     "prepare": "husky install",
     "clean": "turbo run clean",
@@ -50,6 +52,7 @@
     "create:block": "yarn hygen blocks new",
     "build:web": "yarn w website build",
     "build:theme": "turbo run build --filter='./packages/saas-ui-theme'",
+    "build:panda": "turbo run build",
     "build:tokens": "chakra typegen packages/saas-ui-react/src/preset.ts",
     "build:tokens-dev": "cross-env LOCAL=1 chakra typegen packages/saas-ui-react/src/preset.ts",
     "build:packages": "turbo run build --filter='./packages/saas-ui-*' --filter='!./packages/pro/*' --concurrency=5 --continue",
@@ -59,18 +62,14 @@
     "build:storybook-addon": "yarn w @saas-ui/storybook-addon build",
     "build:props-docs": "yarn typedocs && yarn w @saas-ui/props-docs build",
     "typedocs": "tsx scripts/typedocs.ts",
-    "preinstall": "rm -rf node_modules/odiff-bin"
+    "preinstall": "rimraf node_modules/odiff-bin"
   },
   "workspaces": [
-    "apps/v3",
-    "apps/compositions",
-    "packages/storybook",
-    "packages/pro/packages/*",
-    "packages/saas-ui-*",
-    "tooling/next-workspaces",
-    "tooling/test-utils",
-    "tooling/props-docs",
-    "tooling/storybook-addon"
+    "packages/saas-ui-panda",
+    "packages/saas-ui-core",
+    "packages/saas-ui-react-panda",
+    "packages/saas-ui-hooks",
+    "apps/panda-testing"
   ],
   "devDependencies": {
     "@chakra-ui/cli": "^3.4.0",
